@@ -10,17 +10,17 @@ if [ -z $* ]; then
 	exit 1
 fi
 
-echo "Quick-start tool for llvm proqect is started..."
+echo "Quick-start tool for llvm project is started..."
 
 while getopts "ibth" opt; do
   case "$opt" in
   	h) # Help
-    	echo "Help:"
-    	echo "-i install all required packages"
-    	echo "-b build llvm project to {llvm_folder}/build"
-    	echo "-t test llvm project from {llvm_folder}/build directory"
-    	echo "To use -bt options you must be in {llvm_folder} directory"
-	  ;;
+		echo "Help:"
+		echo "-i install all required packages"
+		echo "-b build llvm project to {llvm_folder}/build"
+		echo "-t test llvm project from {llvm_folder}/build directory"
+		echo "To use -bt options you must be in {llvm_folder} directory"
+		;;
     i) # Install packages
     	echo "Get brew package system"
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -47,7 +47,7 @@ while getopts "ibth" opt; do
 		if test -d "$BUILD_DIR"; then
 			cd $BUILD_DIR
 		fi
-    	ninja
+    		ninja
       	;;
     \?)
 	    echo "Invalid option: -$OPTARG" >&4
