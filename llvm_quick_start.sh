@@ -19,6 +19,7 @@ while getopts "ibth" opt; do
     	echo "-i install all required packages"
     	echo "-b build llvm project to {llvm_folder}/build"
     	echo "-t test llvm project from {llvm_folder}/build directory"
+    	echo "To use -bt options you must be in {llvm_folder} directory"
 	  ;;
     i) # Install packages
     	echo "Get brew package system"
@@ -41,6 +42,11 @@ while getopts "ibth" opt; do
       	;;
     t) # Run ninja tests
 		echo "Run ninja test"
+		WORKDIR=$(PWD) 
+		BUILD_DIR=${WORKDIR}/build
+		if test -d "$BUILD_DIR"; then
+			cd $BUILD_DIR
+		fi
     	ninja
       	;;
     \?)
