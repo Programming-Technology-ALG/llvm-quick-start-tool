@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# llvm quick-start tool [tested on MacOS 11.5.2]
+# llvm quick-start tool [Created for MacOS cuild be used on Linux]
 # Owner: github/alexgiving
 # Year: 2021
 
@@ -22,7 +22,7 @@ while getopts "ibth" opt; do
         echo "Help:"
         echo "-i install all required packages"
         echo "-b build llvm project to " ${BUILD_DIR}
-        echo "-t test llvm project from " ${BUILD_DIR}
+        echo "-t run llvm project from " ${BUILD_DIR}
         ;;
     i) # Install packages
         echo "Get brew package system"
@@ -36,15 +36,19 @@ while getopts "ibth" opt; do
 
         echo "Install llvm clang package"
         brew install llvm
+
+        echo "Set required paths"
+        export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+        export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
         ;;
     b) # Build
         echo "Prepare a build"
-        mkdir build
+        mkdir -p build
         cd ${BUILD_DIR}
         cmake -G "Ninja" -DLLVM_ENABLE_PROJECTS=clang -DLLVM_BUILD_EXAMPLES=ON -DLLVM_TARGETS_TO_BUILD="host" -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_ASSERTIONS=ON -DLLVM_ENABLE_RTTI=ON ../llvm
         ;;
-    t) # Run ninja tests
-        echo "Run ninja test"
+t) # Run ninja
+        echo "Run ninja"
         if test -d "$BUILD_DIR"; then
             cd $BUILD_DIR
         fi
