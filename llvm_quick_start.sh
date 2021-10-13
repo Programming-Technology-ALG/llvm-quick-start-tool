@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# llvm quick-start tool [Created for MacOS cuild be used on Linux]
+# llvm quick-start tool [Created for MacOS could be used on Linux]
 # Owner: github/alexgiving
 # Year: 2021
 
